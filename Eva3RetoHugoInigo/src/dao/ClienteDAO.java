@@ -31,11 +31,13 @@ public class ClienteDAO implements GenericDAO<Cliente> {
 					if (rs.next()) {
 						cliente.setId(rs.getInt(1)); 
 						String sql2 = """
-								insert into cliente (direccion) values (?);
+								insert into cliente (id,direccion) values (?,?);
 							
 								""";
 						try (PreparedStatement pstm = conn.prepareStatement(sql2)){
-							pstm.setString(1, cliente.getDireccion());
+							pstm.setInt(1, cliente.getId());
+							pstm.setString(2, cliente.getDireccion());
+							 filas = pstm.executeUpdate();
 						}  
 							
 							
