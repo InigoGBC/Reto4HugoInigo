@@ -1,15 +1,47 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
-
 import modelo.Cliente;
+import util.ConexionBD;
 
-public class ClienteDAO implements GenericDAO<Cliente>{
+public class ClienteDAO implements GenericDAO<Cliente> {
 
 	@Override
-	public boolean insertar(Cliente objeto) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean insertar(Cliente cliente) {
+		String sql = """
+				insert into persona (dni,nombre) values (?,?);
+			
+				""";
+
+		try (Connection conn = ConexionBD.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+			pstmt.setString(1, cliente.getDni());
+			pstmt.setString(2, cliente.getNombre());
+
+			int filas = pstmt.executeUpdate();
+
+			if (filas > 0) {
+				try (ResultSet rs = pstmt.getGeneratedKeys()) {
+					if (rs.next()) {
+						cliente.setId(rs.getInt(1)); // asigna el ID
+						
+						return true;
+					}
+				}
+			}
+			return false;
+
+		} catch (SQLException e) {
+			System.err.println("Error SQL al insertar '" + cliente.getDireccion() + "': " + e.getMessage());
+			return false;
+		}
+		
 	}
 
 	@Override
@@ -36,4 +68,11 @@ public class ClienteDAO implements GenericDAO<Cliente>{
 		return false;
 	}
 
+	protected Cliente mapearFila(ResultSet rs) throws SQLException {
+		Cliente a = new Cliente();
+		a.setId(rs.getInt("id"));
+		a.setDireccion(rs.getString("direccion"));
+
+		return a;
+	}
 }
