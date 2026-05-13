@@ -14,7 +14,7 @@ public class EmpleadoDAO implements GenericDAO<Empleado>{
 
 	@Override
 	public List<Empleado> obtenerTodos() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
