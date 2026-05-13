@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Factura;
@@ -25,8 +26,22 @@ public class FacturaDAO implements GenericDAO<Factura>{
 
 	@Override
 	public List<Factura> obtenerTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Factura> lista = new ArrayList<>();
+        String sql = "SELECT * FROM prestamo";
+
+        try (Connection con = ConexionBD.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                lista.add(mapear(rs));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al obtener todos: " + e.getMessage());
+        }
+
+        return lista;
 	}
 
 	@Override
