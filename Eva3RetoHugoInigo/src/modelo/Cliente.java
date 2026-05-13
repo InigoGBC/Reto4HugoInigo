@@ -8,16 +8,22 @@ public class Cliente extends Persona {
 		super();
 	}
 
-	public Cliente(String direccion) {
-		super();
+	
+
+
+	public Cliente(String dni, String nombre, String direccion) {
+		super(dni, nombre);
 		this.direccion = direccion;
 	}
 
-	public Cliente(int id, String direccion) {
-		super();
-		this.id = id;
+
+
+
+	public Cliente(int id, String dni, String nombre, String direccion) {
+		super(id, dni, nombre);
 		this.direccion = direccion;
 	}
+
 
 	public int getId() {
 		return id;
