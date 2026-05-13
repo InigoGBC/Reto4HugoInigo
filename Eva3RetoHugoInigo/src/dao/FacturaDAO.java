@@ -27,7 +27,7 @@ public class FacturaDAO implements GenericDAO<Factura>{
 	@Override
 	public List<Factura> obtenerTodos() {
 		List<Factura> lista = new ArrayList<>();
-        String sql = "SELECT * FROM prestamo";
+        String sql = "SELECT * FROM factura";
 
         try (Connection con = ConexionBD.getConnection();
              PreparedStatement ps = con.prepareStatement(sql);
@@ -84,7 +84,7 @@ public class FacturaDAO implements GenericDAO<Factura>{
 	        objeto.setIdEmpleado(rs.getInt("id_empleado"));
 	        objeto.setSubtotal(rs.getDouble("subtotal"));
 	        objeto.setIva(rs.getDouble("iva"));
-	        objeto.setTotal(rs.getInt("total"));
+	        objeto.setTotal(rs.getDouble("total"));
 	        return objeto;
 	    }
 	
