@@ -2,30 +2,30 @@ package dao;
 
 import java.util.List;
 
-import modelo.Factura;
+import modelo.LineaFactura;
 
-public class FacturaDAO implements GenericDAO<Factura>{
+public class LineaFacturaDAO implements GenericDAO<LineaFactura>{
 
 	@Override
-	public boolean insertar(Factura objeto) {
+	public boolean insertar(LineaFactura objeto) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public List<Factura> obtenerTodos() {
+	public List<LineaFactura> obtenerTodos() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Factura obtenerPorId(int id) {
+	public LineaFactura obtenerPorId(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean actualizar(Factura objeto) {
+	public boolean actualizar(LineaFactura objeto) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -35,7 +35,5 @@ public class FacturaDAO implements GenericDAO<Factura>{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	
 
 }
