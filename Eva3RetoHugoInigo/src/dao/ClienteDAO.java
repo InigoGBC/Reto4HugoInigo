@@ -29,7 +29,16 @@ public class ClienteDAO implements GenericDAO<Cliente> {
 			if (filas > 0) {
 				try (ResultSet rs = pstmt.getGeneratedKeys()) {
 					if (rs.next()) {
-						cliente.setId(rs.getInt(1)); // asigna el ID
+						cliente.setId(rs.getInt(1)); 
+						String sql2 = """
+								insert into cliente (direccion) values (?);
+							
+								""";
+						try (PreparedStatement pstm = conn.prepareStatement(sql)){
+							pstm.setString(1, cliente.getDireccion());
+						}  
+							
+							
 						
 						return true;
 					}
