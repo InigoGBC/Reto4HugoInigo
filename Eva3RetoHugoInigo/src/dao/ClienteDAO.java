@@ -34,7 +34,7 @@ public class ClienteDAO implements GenericDAO<Cliente> {
 								insert into cliente (direccion) values (?);
 							
 								""";
-						try (PreparedStatement pstm = conn.prepareStatement(sql)){
+						try (PreparedStatement pstm = conn.prepareStatement(sql2)){
 							pstm.setString(1, cliente.getDireccion());
 						}  
 							
