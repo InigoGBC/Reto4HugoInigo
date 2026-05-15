@@ -102,8 +102,19 @@ public class ProductoDAO implements GenericDAO<Producto>{
 
 	@Override
 	public boolean eliminar(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "DELETE FROM producto WHERE id = ?";
+
+        try (Connection con = ConexionBD.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar: " + e.getMessage());
+        }
+
+        return false;
 	}
 	
 	 private Producto mapear(ResultSet rs) throws SQLException {

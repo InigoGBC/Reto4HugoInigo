@@ -116,7 +116,6 @@ public class Main2 {
 		}
 		System.out.println("\n");
 		//Fin ej 7
-		///*/
 		//Ej 8
 		System.out.println("Ej 8 \nEscribe la id del producto: ");
 		String idej8st = sc.nextLine();
@@ -127,8 +126,53 @@ public class Main2 {
 		System.out.println(productoDAO.actualizarPrecio(idej8, nuevoprecioej8));
 		System.out.println("\n");
 		// Fin 8
-		
+		*/
+		/*
 		//Ej 10
+		int idfac10 = 0;
+		System.out.println("Ej 10");
+		for (Producto prod : productoDAO.obtenerTodos()) {
+			System.out.println(prod);
+		}
+		System.out.println("Escribe el id del producto: ");
+		String idej10st = sc.nextLine();
+		int idej10 = Integer.parseInt(idej10st);
+		for (LineaFactura ln : lineafacturaDAO.obtenerTodos()) {
+			if (ln.getIdProducto()==idej10) {
+				idfac10 = ln.getIdFactura();
+				for (Factura fac : facturaDAO.obtenerTodos()) {
+					if (fac.getId()==idfac10) {
+						System.out.println(fac);
+					}
+					
+				}
+				
+			}
+			
+		}
+		//Ej11
+		System.out.println("\n");
+		System.out.println("Ej11");
+		*/
+		boolean esta = false;
+		for (Producto prod : productoDAO.obtenerTodos()) {
+			System.out.println(prod);
+		}
+		System.out.println("Escribe el id del producto: ");
+		String idej11st = sc.nextLine();
+		int idej11 = Integer.parseInt(idej11st);
+		for (LineaFactura lf : lineafacturaDAO.obtenerTodos()) {
+			if (lf.getIdProducto()==idej11) {
+				esta = true;
+			}
+		}
+		if (esta) {
+			System.out.println("Este producto tiene lineas de factura");
+		} else {
+			System.out.println(productoDAO.eliminar(idej11));
+		}
+		
+		
 		
 		
 		
