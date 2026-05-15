@@ -66,6 +66,26 @@ public class FacturaDAO implements GenericDAO<Factura>{
 	        return null;
 
 	}
+	public Factura copiar(int id) {
+		 String sql = "SELECT fecha,id_cliente,id_empleado,subtotal,iva,total FROM factura WHERE id = ?";
+
+	        try (Connection con = ConexionBD.getConnection();
+	             PreparedStatement ps = con.prepareStatement(sql)) {
+
+	            ps.setInt(1, id);
+	            ResultSet rs = ps.executeQuery();
+
+	            if (rs.next()) {
+	                return mapearsinid(rs);
+	            }
+
+	        } catch (SQLException e) {
+	            System.out.println("Error al obtener por id: " + e.getMessage());
+	        }
+
+	        return null;
+
+	}
 	public Factura obtenerPorFecha(LocalDate fecha) {
 		 String sql = "SELECT id,fecha,id_cliente,id_empleado,subtotal,iva,total FROM factura WHERE id = ?";
 
@@ -108,6 +128,16 @@ public class FacturaDAO implements GenericDAO<Factura>{
 	        objeto.setSubtotal(rs.getDouble("subtotal"));
 	        objeto.setIva(rs.getDouble("iva"));
 	        objeto.setTotal(rs.getDouble("total"));
+	        return objeto;
+	    }
+	 private Factura mapearsinid(ResultSet rss) throws SQLException {
+	        Factura objeto = new Factura();
+	        objeto.setFecha(rss.getObject("fecha", LocalDate.class));
+	        objeto.setIdCliente(rss.getInt("id_cliente"));
+	        objeto.setIdEmpleado(rss.getInt("id_empleado"));
+	        objeto.setSubtotal(rss.getDouble("subtotal"));
+	        objeto.setIva(rss.getDouble("iva"));
+	        objeto.setTotal(rss.getDouble("total"));
 	        return objeto;
 	    }
 	

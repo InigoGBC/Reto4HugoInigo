@@ -153,7 +153,6 @@ public class Main2 {
 		//Ej11
 		System.out.println("\n");
 		System.out.println("Ej11");
-		*/
 		boolean esta = false;
 		for (Producto prod : productoDAO.obtenerTodos()) {
 			System.out.println(prod);
@@ -172,7 +171,14 @@ public class Main2 {
 			System.out.println(productoDAO.eliminar(idej11));
 		}
 		
-		
+		//Ej 13
+		System.out.println("\n");
+		*/
+		System.out.println("Ej13");
+		System.out.println("Escribe el id de una factura: ");
+		Factura copiafac = facturaDAO.copiar(1);
+		System.out.println(copiafac);
+
 		
 		
 		
