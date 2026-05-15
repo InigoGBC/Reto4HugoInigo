@@ -1,6 +1,8 @@
 package modelo;
 
-public class Cliente extends Persona {
+import java.io.Serializable;
+
+public class Cliente extends Persona implements Serializable{
 
 	protected String direccion;
 

@@ -24,7 +24,6 @@ public class Main2 {
 		ClienteDAO clienteDAO = new ClienteDAO();
 		EmpleadoDAO empleadoDAO = new EmpleadoDAO();	
 		ProductoDAO productoDAO = new ProductoDAO();
-		/*
 		//Ej 3
 		System.out.println("Ej1:");
 		for (Cliente p : clienteDAO.obtenerTodos()) {
@@ -63,11 +62,7 @@ public class Main2 {
 			if (lf.getIdFactura() == idej1)
 			System.out.println(lf);
 		}
-		//Fin Ej 3
 		System.out.println("\n");
-		//-----------------------------------------------------------------------
-		/* Ej 4 Muestra todas las facturas de un mes, pide el número del mes y 
-		   calcula el total facturado ese mes. 
 		System.out.println("Ej 4 \nEscribe un mes de factura: ");
 		double calc = 0;
 		String idej4st = sc.nextLine();

@@ -41,7 +41,31 @@ public class EmpleadoDAO implements GenericDAO<Empleado>{
 		}
 		return empleados;
 	}
-	
+	public Empleado obtenerResumen(int mes) {
+		  String sql = """
+		  		
+		  	SELECT a.id, COUNT(b.id) AS facturas, SUM(b.total) AS importe_total
+		  		 FROM empleado a
+		  		 INNER JOIN factura b ON b.id_empleado = a.id
+		  		 WHERE MONTH(b.fecha) = ?
+		  		 GROUP BY a.id	""";
+
+	        try (Connection con = ConexionBD.getConnection();
+	             PreparedStatement ps = con.prepareStatement(sql)) {
+
+	            ps.setInt(1, mes);
+	            ResultSet rs = ps.executeQuery();
+
+	            if (rs.next()) {
+	                return mapearFila(rs);
+	            }
+
+	        } catch (SQLException e) {
+	            System.out.println("Error al obtener por id: " + e.getMessage());
+	        }
+
+	        return null;
+	}	
 
 	@Override
 	public Empleado obtenerPorId(int id) {
