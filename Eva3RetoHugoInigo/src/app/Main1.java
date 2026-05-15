@@ -1,5 +1,8 @@
 package app;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import dao.ClienteDAO;
@@ -23,7 +26,7 @@ public class Main1 {
 		System.out.println("dime un id: ");
 		int id = (Integer.parseInt(sc.nextLine()));
 		System.out.println();
-		facturaDAO.obtenerPorId(id);*/
+		facturaDAO.obtenerPorId(id);
 		
 		System.out.println("ejercicio 2: ");
 		for (Empleado p : empleadoDAO.obtenerTodos()) {
@@ -31,11 +34,23 @@ public class Main1 {
 		}
 		
 
-		// System.out.println("Ejercicio 6: ");
+		 System.out.println("Ejercicio 6: ");
 
-		// Cliente c = new Cliente("12345675Z","Pepe Carrera","Plaza Mozart 3");
-		// System.out.println(z.insertar(c));
+		 Cliente c = new Cliente("12345675Z","Pepe Carrera","Plaza Mozart 3");
+		System.out.println(z.insertar(c));
+		*/
+		System.out.println("ejercicio 12: ");
+		ArrayList<Cliente> clientes = new ArrayList<>();
+		clientes.addAll( clienteDAO.obtenerTodos());
+		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("cliente.dat"))) {
+			out.writeObject(clientes);
+			System.out.println("clientes guardados.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
+
+	
 
 }
