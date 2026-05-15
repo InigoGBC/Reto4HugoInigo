@@ -8,10 +8,12 @@ import dao.ClienteDAO;
 import dao.EmpleadoDAO;
 import dao.FacturaDAO;
 import dao.LineaFacturaDAO;
+import dao.ProductoDAO;
 import modelo.Cliente;
 import modelo.Empleado;
 import modelo.Factura;
 import modelo.LineaFactura;
+import modelo.Producto;
 
 public class Main2 {
 
@@ -21,7 +23,8 @@ public class Main2 {
 		LineaFacturaDAO lineafacturaDAO = new LineaFacturaDAO();
 		ClienteDAO clienteDAO = new ClienteDAO();
 		EmpleadoDAO empleadoDAO = new EmpleadoDAO();	
-		
+		ProductoDAO productoDAO = new ProductoDAO();
+		/*
 		//Ej 3
 		System.out.println("Ej1:");
 		for (Cliente p : clienteDAO.obtenerTodos()) {
@@ -64,7 +67,7 @@ public class Main2 {
 		System.out.println("\n");
 		//-----------------------------------------------------------------------
 		/* Ej 4 Muestra todas las facturas de un mes, pide el número del mes y 
-		   calcula el total facturado ese mes. */
+		   calcula el total facturado ese mes. 
 		System.out.println("Ej 4 \nEscribe un mes de factura: ");
 		double calc = 0;
 		String idej4st = sc.nextLine();
@@ -79,6 +82,7 @@ public class Main2 {
 		System.out.println("En total se ha facturado "+calc+"€ este mes");
 		System.out.println("\n");
 		//Fin Ej 4
+		//Ej 5
 		System.out.println("Ej 5 \nEscribe una fecha: ");
 		String datest = sc.nextLine();
 		LocalDate dateej4 = LocalDate.parse(datest);
@@ -88,9 +92,43 @@ public class Main2 {
 			System.out.println(lf);
 			}
 		}
+		System.out.println("\n");
+		//Fin Ej 5
+		//Ej 7
+		System.out.println("Ej 7 \nEscribe un nombre: ");
+		String nuevonombre = sc.nextLine();
+		System.out.println("Escribe un precio base: ");
+		String nvoprecost = sc.nextLine();
+		Double nuevoprecio = Double.parseDouble(nvoprecost);
+		System.out.println("Escribe un stock base: ");
+		String nvostockst = sc.nextLine();
+		int nuevostock = Integer.parseInt(nvostockst);
+		boolean esta = false;
+		for (Producto prod : productoDAO.obtenerTodos()) {
+			if (prod.getNombre().equals(nuevonombre)) {
+				esta=true;
+			}
+		}
+		if (!esta) {
+			System.out.println(productoDAO.insertar(new Producto(nuevonombre,nuevoprecio,nuevostock)));
+		} else {
+			System.out.println("El producto ya esta");
+		}
+		System.out.println("\n");
+		//Fin ej 7
+		///*/
+		//Ej 8
+		System.out.println("Ej 8 \nEscribe la id del producto: ");
+		String idej8st = sc.nextLine();
+		int idej8 = Integer.parseInt(idej8st);
+		System.out.println("Escribe el nuevo precio: ");
+		String precioej8st = sc.nextLine();
+		Double nuevoprecioej8 = Double.parseDouble(precioej8st);
+		System.out.println(productoDAO.actualizarPrecio(idej8, nuevoprecioej8));
+		System.out.println("\n");
+		// Fin 8
 		
-		
-		
+		//Ej 10
 		
 		
 		
