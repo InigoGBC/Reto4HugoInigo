@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,6 +66,27 @@ public class FacturaDAO implements GenericDAO<Factura>{
 	        return null;
 
 	}
+	public Factura obtenerPorFecha(LocalDate fecha) {
+		 String sql = "SELECT id,fecha,id_cliente,id_empleado,subtotal,iva,total FROM factura WHERE id = ?";
+
+	        try (Connection con = ConexionBD.getConnection();
+	             PreparedStatement ps = con.prepareStatement(sql)) {
+
+	            ps.setObject(1, fecha);
+	            ResultSet rs = ps.executeQuery();
+
+	            if (rs.next()) {
+	                return mapear(rs);
+	            }
+
+	        } catch (SQLException e) {
+	            System.out.println("Error al obtener por id: " + e.getMessage());
+	        }
+
+	        return null;
+
+	}
+
 
 	@Override
 	public boolean actualizar(Factura objeto) {
@@ -80,6 +102,7 @@ public class FacturaDAO implements GenericDAO<Factura>{
 	 private Factura mapear(ResultSet rs) throws SQLException {
 	        Factura objeto = new Factura();
 	        objeto.setId(rs.getInt("id"));
+	        objeto.setFecha(rs.getObject("fecha", LocalDate.class));
 	        objeto.setIdCliente(rs.getInt("id_cliente"));
 	        objeto.setIdEmpleado(rs.getInt("id_empleado"));
 	        objeto.setSubtotal(rs.getDouble("subtotal"));
