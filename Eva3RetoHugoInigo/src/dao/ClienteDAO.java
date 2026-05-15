@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
+
+
 import modelo.Cliente;
 import util.ConexionBD;
 
@@ -57,14 +60,47 @@ public class ClienteDAO implements GenericDAO<Cliente> {
 
 	@Override
 	public List<Cliente> obtenerTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Cliente> clientes = new ArrayList<>();
+		String sql = """ 
+				
+				SELECT id, direccion
+				FROM cliente 
+		
+				""";
+
+		try (Connection conn = ConexionBD.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()) {
+
+			while (rs.next()) {
+				clientes.add(mapearFila(rs));
+			}
+
+		} catch (SQLException e) {
+			System.err.println("Error SQL al obtener todos los alumnos: " + e.getMessage());
+		}
+		return clientes;
 	}
 
 	@Override
 	public Cliente obtenerPorId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		  String sql = "SELECT id,direccion FROM cliente WHERE id = ?";
+
+	        try (Connection con = ConexionBD.getConnection();
+	             PreparedStatement ps = con.prepareStatement(sql)) {
+
+	            ps.setInt(1, id);
+	            ResultSet rs = ps.executeQuery();
+
+	            if (rs.next()) {
+	                return mapearFila(rs);
+	            }
+
+	        } catch (SQLException e) {
+	            System.out.println("Error al obtener por id: " + e.getMessage());
+	        }
+
+	        return null;
 	}
 
 	@Override
