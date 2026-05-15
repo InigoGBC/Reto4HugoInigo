@@ -63,8 +63,8 @@ public class ClienteDAO implements GenericDAO<Cliente> {
 		List<Cliente> clientes = new ArrayList<>();
 		String sql = """ 
 				
-				SELECT id, direccion
-				FROM cliente 
+				SELECT a.id, a.direccion,b.dni,b.nombre
+				FROM cliente a inner join persona b on a.id=b.id 
 		
 				""";
 

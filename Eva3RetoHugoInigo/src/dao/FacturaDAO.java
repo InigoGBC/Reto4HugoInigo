@@ -46,7 +46,7 @@ public class FacturaDAO implements GenericDAO<Factura>{
 
 	@Override
 	public Factura obtenerPorId(int id) {
-		 String sql = "SELECT * FROM factura WHERE id = ?";
+		 String sql = "SELECT id,fecha,id_cliente,id_empleado,subtotal,iva,total FROM factura WHERE id = ?";
 
 	        try (Connection con = ConexionBD.getConnection();
 	             PreparedStatement ps = con.prepareStatement(sql)) {
