@@ -63,8 +63,8 @@ public class ClienteDAO implements GenericDAO<Cliente> {
 		List<Cliente> clientes = new ArrayList<>();
 		String sql = """ 
 				
-				SELECT a.id, a.direccion,b.dni,b.nombre
-				FROM cliente a inner join persona b on a.id=b.id 
+				SELECT id, direccion
+				FROM cliente 
 		
 				""";
 
@@ -77,7 +77,7 @@ public class ClienteDAO implements GenericDAO<Cliente> {
 			}
 
 		} catch (SQLException e) {
-			System.err.println("Error SQL al obtener todos los alumnos: " + e.getMessage());
+			System.err.println("Error SQL al obtener todos los clientes: " + e.getMessage());
 		}
 		return clientes;
 	}
