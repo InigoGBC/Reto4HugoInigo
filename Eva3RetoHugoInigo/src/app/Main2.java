@@ -24,6 +24,7 @@ public class Main2 {
 		ClienteDAO clienteDAO = new ClienteDAO();
 		EmpleadoDAO empleadoDAO = new EmpleadoDAO();	
 		ProductoDAO productoDAO = new ProductoDAO();
+		/*
 		//Ej 3
 		System.out.println("Ej1:");
 		for (Cliente p : clienteDAO.obtenerTodos()) {
