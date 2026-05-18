@@ -13,7 +13,8 @@ import modelo.Cliente;
 import util.ConexionBD;
 
 public class ClienteDAO implements GenericDAO<Cliente> {
-
+	
+	
 	@Override
 	public boolean insertar(Cliente cliente) {
 		String sql = """
@@ -81,7 +82,9 @@ public class ClienteDAO implements GenericDAO<Cliente> {
 		}
 		return clientes;
 	}
-
+	/**
+	 * 
+	 */
 	@Override
 	public Cliente obtenerPorId(int id) {
 		  String sql = "SELECT id,direccion FROM cliente WHERE id = ?";
@@ -114,7 +117,12 @@ public class ClienteDAO implements GenericDAO<Cliente> {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	/**
+	 * 
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
 	protected Cliente mapearFila(ResultSet rs) throws SQLException {
 		Cliente a = new Cliente();
 		a.setId(rs.getInt("id"));
