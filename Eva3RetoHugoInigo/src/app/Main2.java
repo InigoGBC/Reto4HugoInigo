@@ -244,7 +244,24 @@ public class Main2 {
 			}
 		}
 		*/
-		
+		//Ej 15
+		System.out.println("\n");
+		System.out.println("Ej13");
+		System.out.println("Escribe el numero de mes de la factura: ");
+		double totfac = 0;
+		String num15sc = sc.nextLine();
+		int num15 = Integer.parseInt(num15sc);
+		for (Empleado emp : empleadoDAO.obtenerTodos()) {
+			System.out.println(emp);
+			totfac = 0;
+			for (Factura fac : facturaDAO.obtenerTodos()) {
+				if (fac.getIdEmpleado()==emp.getId() && fac.getFecha().getMonthValue()==num15) {
+					System.out.println(fac);
+					totfac+=fac.getTotal();
+				}
+			}
+			System.out.println("Este empleado ha facturado este mes en total: "+totfac+"\n");
+		}
 		
 		
 		

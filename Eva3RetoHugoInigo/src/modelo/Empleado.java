@@ -49,7 +49,10 @@ public class Empleado {
 
 	@Override
 	public String toString() {
-		return "Empleado [id=" + id + ", puesto=" + puesto + ", salario=" + salario + "]";
+		return "Empleado [id=" + id + ", puesto=" + puesto + ", salario=" + salario + ", getId()=" + getId()
+				+ ", getPuesto()=" + getPuesto() + ", getSalario()=" + getSalario() + "]";
 	}
+
+	
 
 }
