@@ -1,7 +1,12 @@
 package app;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -253,6 +258,10 @@ public class Ejercicios {
 	}
 
 	public void ejercicio12() {
+		ClienteDAO clienteDAO = new ClienteDAO();
+		System.out.println("ejercicio 12: ");
+		guardarFichero(clienteDAO.obtenerTodos());
+		mostrarFichero();
 
 	}
 
@@ -282,6 +291,49 @@ public class Ejercicios {
 	}
 
 	public void ejercicio15() {
+		System.out.println("Ej15");
+		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+		EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+		FacturaDAO facturaDAO = new FacturaDAO();
+		System.out.println("Escribe el numero de mes de la factura: ");
+		double totfac = 0;
+		String num15sc = sc.nextLine();
+		int num15 = Integer.parseInt(num15sc);
+		for (Empleado emp : empleadoDAO.obtenerTodos()) {
+			System.out.println(emp);
+			totfac = 0;
+			for (Factura fac : facturaDAO.obtenerTodos()) {
+				if (fac.getIdEmpleado() == emp.getId() && fac.getFecha().getMonthValue() == num15) {
+					System.out.println(fac);
+					totfac += fac.getTotal();
+				}
+			}
+			System.out.println("Este empleado ha facturado este mes en total: " + totfac + "\n");
+		}
 
+	}
+
+	public static void guardarFichero(List<Cliente> clientes) {
+
+		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("clientes.dat"))) {
+			out.writeObject(clientes);
+			System.out.println("clientes guardados.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void mostrarFichero() {
+
+		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("clientes.dat"))) {
+
+			ArrayList<Cliente> clientes = (ArrayList<Cliente>) in.readObject();
+
+			for (Cliente c : clientes) {
+				System.out.println(c);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
