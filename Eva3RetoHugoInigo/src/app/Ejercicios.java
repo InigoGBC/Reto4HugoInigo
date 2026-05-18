@@ -1,6 +1,7 @@
 package app;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -140,7 +141,62 @@ public class Ejercicios {
 	}
 
 	public void ejercicio9() {
+		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+		LineaFacturaDAO lineafacturaDAO = new LineaFacturaDAO();
+		ProductoDAO productoDAO = new ProductoDAO();
+		ClienteDAO clienteDAO = new ClienteDAO();
+		EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+		FacturaDAO facturaDAO = new FacturaDAO();
+		System.out.println("Ej 10");
+		System.out.println("Clientes:");
+		for (Cliente cli : clienteDAO.obtenerTodos()) {
+			System.out.println(cli);
+		}
+		System.out.println("Escribe el id de un cliente: ");
+		String idej9st = sc.nextLine();
+		int idej9cli = Integer.parseInt(idej9st);
+		System.out.println("Empleados:");
+		for (Empleado emp : empleadoDAO.obtenerTodos()) {
+			System.out.println(emp);
+		}
+		System.out.println("Escribe el id de un empleado: ");
+		idej9st = sc.nextLine();
+		int idej9emp = Integer.parseInt(idej9st);
+		System.out.println("Productos disponibles:");
+		for (Producto prod : productoDAO.obtenerTodos()) {
+			System.out.println(prod);
+		}
+		int idej9prod = 0;
+		ArrayList<Integer> productos = new ArrayList<Integer>();
+		double subtotal = 0;
+		do {
+			System.out.println("Escribe el id del producto que quieres añadir: ");
+			idej9st = sc.nextLine();
+			idej9prod = Integer.parseInt(idej9st);
+			if (idej9prod != 0) {
+				productos.add(idej9prod);
 
+			}
+
+		} while (idej9prod != 0);
+		for (Integer integer : productos) {
+			Producto prod = productoDAO.obtenerPorId(integer);
+			subtotal += prod.getPrecio();
+		}
+		double iva = subtotal * 0.21;
+		System.out.println(subtotal);
+		double total = subtotal + iva;
+		Factura nuevafac = new Factura(LocalDate.now(), idej9cli, idej9emp, subtotal, iva, total);
+		System.out.println(facturaDAO.insertar(nuevafac));
+		System.out.println(nuevafac);
+
+		for (Integer integer : productos) {
+			Producto prod = productoDAO.obtenerPorId(integer);
+			LineaFactura lf = new LineaFactura(nuevafac.getId(), integer, 1, prod.getPrecio(), prod.getPrecio() * 1);
+
+			System.out.println(lineafacturaDAO.insertar(lf));
+			System.out.println(lf);
+		}
 	}
 
 	public void ejercicio10() {
@@ -157,17 +213,17 @@ public class Ejercicios {
 		String idej10st = sc.nextLine();
 		int idej10 = Integer.parseInt(idej10st);
 		for (LineaFactura ln : lineafacturaDAO.obtenerTodos()) {
-			if (ln.getIdProducto()==idej10) {
+			if (ln.getIdProducto() == idej10) {
 				idfac10 = ln.getIdFactura();
 				for (Factura fac : facturaDAO.obtenerTodos()) {
-					if (fac.getId()==idfac10) {
+					if (fac.getId() == idfac10) {
 						System.out.println(fac);
 					}
-					
+
 				}
-				
+
 			}
-			
+
 		}
 	}
 
@@ -184,7 +240,7 @@ public class Ejercicios {
 		String idej11st = sc.nextLine();
 		int idej11 = Integer.parseInt(idej11st);
 		for (LineaFactura lf : lineafacturaDAO.obtenerTodos()) {
-			if (lf.getIdProducto()==idej11) {
+			if (lf.getIdProducto() == idej11) {
 				esta = true;
 			}
 		}
@@ -193,11 +249,11 @@ public class Ejercicios {
 		} else {
 			System.out.println(productoDAO.eliminar(idej11));
 		}
-		
+
 	}
 
 	public void ejercicio12() {
-		
+
 	}
 
 	public void ejercicio13() {
@@ -213,7 +269,7 @@ public class Ejercicios {
 		System.out.println(facturaDAO.insertar(copiafac));
 		System.out.println(copiafac);
 		for (LineaFactura lf : lineafacturaDAO.obtenerTodos()) {
-			if (lf.getIdFactura()==idej13) {
+			if (lf.getIdFactura() == idej13) {
 				LineaFactura copia = lineafacturaDAO.copiar(lf.getId(), copiafac.getId());
 				System.out.println(lineafacturaDAO.insertar(copia));
 				System.out.println(copia);
@@ -222,7 +278,7 @@ public class Ejercicios {
 	}
 
 	public void ejercicio14() {
-		
+
 	}
 
 	public void ejercicio15() {
