@@ -170,11 +170,24 @@ public class Main2 {
 		//Ej 13
 		System.out.println("\n");
 		*/
+		/*
 		System.out.println("Ej13");
 		System.out.println("Escribe el id de una factura: ");
-		Factura copiafac = facturaDAO.copiar(1);
+		String idej13st = sc.nextLine();
+		int idej13 = Integer.parseInt(idej13st);
+		Factura copiafac = facturaDAO.copiar(idej13);
+		System.out.println("Se han insertado: ");
+		System.out.println(facturaDAO.insertar(copiafac));
 		System.out.println(copiafac);
-
+		for (LineaFactura lf : lineafacturaDAO.obtenerTodos()) {
+			if (lf.getIdFactura()==idej13) {
+				LineaFactura copia = lineafacturaDAO.copiar(lf.getId(), copiafac.getId());
+				System.out.println(lineafacturaDAO.insertar(copia));
+				System.out.println(copia);
+			}
+		}
+		*/
+		
 		
 		
 		
