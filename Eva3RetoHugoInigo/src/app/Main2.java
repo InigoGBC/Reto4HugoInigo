@@ -1,6 +1,8 @@
 package app;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -122,6 +124,61 @@ public class Main2 {
 		System.out.println(productoDAO.actualizarPrecio(idej8, nuevoprecioej8));
 		System.out.println("\n");
 		// Fin 8
+		*/
+		/*
+		//Ej 9
+		System.out.println("Ej 10");
+		System.out.println("Clientes:");
+		for (Cliente cli : clienteDAO.obtenerTodos()) {
+			System.out.println(cli);
+		}
+		System.out.println("Escribe el id de un cliente: ");
+		String idej9st = sc.nextLine();
+		int idej9cli = Integer.parseInt(idej9st);
+		System.out.println("Empleados:");
+		for (Empleado emp : empleadoDAO.obtenerTodos()) {
+			System.out.println(emp);
+		}
+		System.out.println("Escribe el id de un empleado: ");
+		idej9st = sc.nextLine();
+		int idej9emp = Integer.parseInt(idej9st);
+		System.out.println("Productos disponibles:");
+		for (Producto prod : productoDAO.obtenerTodos()) {
+			System.out.println(prod);
+		}
+		int idej9prod=0;
+		ArrayList<Integer> productos = new ArrayList<Integer>();
+		double subtotal = 0;
+		do {
+			System.out.println("Escribe el id del producto que quieres añadir: ");
+			idej9st = sc.nextLine();
+			idej9prod = Integer.parseInt(idej9st);
+			if ( idej9prod != 0) {
+				productos.add(idej9prod);
+				
+			}
+				
+		} while (idej9prod!=0);
+		for (Integer integer : productos) {
+			Producto prod = productoDAO.obtenerPorId(integer);
+			subtotal+=prod.getPrecio();
+		}
+		double iva = subtotal*0.21;
+		System.out.println(subtotal);
+		double total = subtotal+iva;
+		Factura nuevafac = new Factura(LocalDate.now(), idej9cli, idej9emp, subtotal, iva, total);
+		System.out.println(facturaDAO.insertar(nuevafac));
+		System.out.println(nuevafac);
+	
+		for (Integer integer : productos) {
+			Producto prod = productoDAO.obtenerPorId(integer);
+			LineaFactura lf = new LineaFactura(nuevafac.getId(), integer, 1, prod.getPrecio(), prod.getPrecio()*1);
+
+			System.out.println(lineafacturaDAO.insertar(lf));
+			System.out.println(lf);
+		}
+		
+		
 		*/
 		/*
 		//Ej 10

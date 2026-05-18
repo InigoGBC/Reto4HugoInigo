@@ -5,25 +5,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelo.Producto;
+import modelo.Libro;
 import util.ConexionBD;
 
-public class ProductoDAO implements GenericDAO<Producto>{
+public class LibroDAO implements GenericDAO<Libro>{
 
 	@Override
-	public boolean insertar(Producto objeto) {
-		String sql = "INSERT INTO producto (nombre, precio, stock) VALUES (?, ?, ?)";
+	public boolean insertar(Libro objeto) {
+		String sql = "INSERT INTO libro (titulo, precio, id_autor, id_editorial) VALUES (?, ?, ?, ?)";
 
         try (Connection con = ConexionBD.getConnection();
              PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, objeto.getNombre());
+            ps.setString(1, objeto.getTitulo());
             ps.setDouble(2, objeto.getPrecio());
-            ps.setInt(3, objeto.getStock());
+            ps.setInt(3, objeto.getId_autor());
+            ps.setInt(4, objeto.getId_editorial());
             int filas = ps.executeUpdate();
 
             if (filas > 0) {
@@ -42,9 +41,9 @@ public class ProductoDAO implements GenericDAO<Producto>{
 	}
 
 	@Override
-	public List<Producto> obtenerTodos() {
-		List<Producto> lista = new ArrayList<>();
-        String sql = "SELECT * FROM producto";
+	public List<Libro> obtenerTodos() {
+		List<Libro> lista = new ArrayList<>();
+        String sql = "SELECT * FROM libro";
 
         try (Connection con = ConexionBD.getConnection();
              PreparedStatement ps = con.prepareStatement(sql);
@@ -60,52 +59,38 @@ public class ProductoDAO implements GenericDAO<Producto>{
 
         return lista;
 	}
-	
-	
+
 	@Override
-	public Producto obtenerPorId(int id) {
-		 String sql = "SELECT * FROM producto WHERE id = ?";
+	public Libro obtenerPorId(int id) {
+	    String sql = "SELECT * FROM libro WHERE id = ?";
 
-	        try (Connection con = ConexionBD.getConnection();
-	             PreparedStatement ps = con.prepareStatement(sql)) {
-
-	            ps.setInt(1, id);
-	            ResultSet rs = ps.executeQuery();
-
-	            if (rs.next()) {
-	                return mapear(rs);
-	            }
-
-	        } catch (SQLException e) {
-	            System.out.println("Error al obtener por id: " + e.getMessage());
-	        }
-
-	        return null;
-	}
-	public boolean actualizarPrecio(int id, double precio) {
-		String sql = "UPDATE producto SET precio = ? where id = ?";
         try (Connection con = ConexionBD.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setDouble(1, precio);
-            ps.setInt(2, id);
-            return ps.executeUpdate() > 0;
+
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return mapear(rs);
+            }
 
         } catch (SQLException e) {
-            System.out.println("Error al actualizar: " + e.getMessage());
+            System.out.println("Error al obtener por id: " + e.getMessage());
         }
 
-        return false;
+        return null;
 	}
 
 	@Override
-	public boolean actualizar(Producto objeto) {
-		String sql = "UPDATE producto SET nombre = ?, precio = ?, stock = ?";
+	public boolean actualizar(Libro objeto) {
+		String sql = "UPDATE libro SET titulo = ?, precio = ?, id_autor = ?, id_editorial = ?";
+
         try (Connection con = ConexionBD.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, objeto.getNombre());
+        	ps.setString(1, objeto.getTitulo());
             ps.setDouble(2, objeto.getPrecio());
-            ps.setInt(3, objeto.getStock());
-    
+            ps.setInt(3, objeto.getId_autor());
+            ps.setInt(4, objeto.getId_editorial());
 
             return ps.executeUpdate() > 0;
 
@@ -118,7 +103,7 @@ public class ProductoDAO implements GenericDAO<Producto>{
 
 	@Override
 	public boolean eliminar(int id) {
-		String sql = "DELETE FROM producto WHERE id = ?";
+		String sql = "DELETE FROM libro WHERE id = ?";
 
         try (Connection con = ConexionBD.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -132,15 +117,16 @@ public class ProductoDAO implements GenericDAO<Producto>{
 
         return false;
 	}
+
+    private Libro mapear(ResultSet rs) throws SQLException {
+        Libro objeto = new Libro();
+        objeto.setId(rs.getInt("id"));
+        objeto.setTitulo(rs.getString("titulo"));
+        objeto.setPrecio(rs.getDouble("precio"));
+        objeto.setPrecio(rs.getInt("id_autor"));
+        objeto.setPrecio(rs.getInt("id_editorial"));
+        return objeto;
+    }
+    
 	
-	 private Producto mapear(ResultSet rs) throws SQLException {
-	        Producto objeto = new Producto();
-	        objeto.setId(rs.getInt("id"));
-	        objeto.setNombre(rs.getString("nombre"));
-	        objeto.setPrecio(rs.getDouble("precio"));
-	        objeto.setStock(rs.getInt("stock"));
-
-	        return objeto;
-	    }
-
 }
