@@ -23,22 +23,22 @@ public class Main1 {
 		FacturaDAO facturaDAO = new FacturaDAO();
 		EmpleadoDAO empleadoDAO = new EmpleadoDAO();
 
-		/**
-		 * System.out.println("ejercicio 1:"); for (Cliente p :
-		 * clienteDAO.obtenerTodos()) { System.out.println(p); }
-		 * System.out.println("dime un id: "); int id =
-		 * (Integer.parseInt(sc.nextLine())); System.out.println();
-		 * facturaDAO.obtenerPorId(id);
-		 * 
-		 * System.out.println("ejercicio 2: "); for (Empleado p :
-		 * empleadoDAO.obtenerTodos()) { System.out.println(p); }
-		 * 
-		 * 
-		 * System.out.println("Ejercicio 6: ");
-		 * 
-		 * Cliente c = new Cliente("12345675Z","Pepe Carrera","Plaza Mozart 3");
-		 * System.out.println(z.insertar(c));
-		 */
+		
+		  System.out.println("ejercicio 1:"); for (Cliente p :
+		  clienteDAO.obtenerTodos()) { System.out.println(p); }
+		  System.out.println("dime un id: "); int id =
+		 (Integer.parseInt(sc.nextLine())); System.out.println();
+		  facturaDAO.obtenerPorId(id);
+		  
+		  System.out.println("ejercicio 2: "); for (Empleado p :
+		  empleadoDAO.obtenerTodos()) { System.out.println(p); }
+		  
+		  
+		 System.out.println("Ejercicio 6: ");
+		  
+		 Cliente c = new Cliente("12345675Z","Pepe Carrera","Plaza Mozart 3");
+		 System.out.println(clienteDAO.insertar(c));
+		 
 		/**
 		 * System.out.println("ejercicio 12: ");
 		 * guardarFichero(clienteDAO.obtenerTodos()); mostrarFichero();

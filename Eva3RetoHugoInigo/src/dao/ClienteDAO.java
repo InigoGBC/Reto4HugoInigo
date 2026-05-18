@@ -14,10 +14,7 @@ import util.ConexionBD;
 
 public class ClienteDAO implements GenericDAO<Cliente> {
 	
-	/**
-	 * Método para insertar una persona nueva, le pasamos los campos y los valores nuevos.
-	 * Una vez insertada la persona inserta en clientes los campos restantes necesarios.
-	 */
+	
 	@Override
 	public boolean insertar(Cliente cliente) {
 		String sql = """
@@ -61,9 +58,7 @@ public class ClienteDAO implements GenericDAO<Cliente> {
 		}
 		
 	}
-	/**
-	 * 
-	 */
+
 	@Override
 	public List<Cliente> obtenerTodos() {
 		List<Cliente> clientes = new ArrayList<>();
