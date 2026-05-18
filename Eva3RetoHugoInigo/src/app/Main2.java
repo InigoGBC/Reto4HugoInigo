@@ -246,7 +246,7 @@ public class Main2 {
 		*/
 		//Ej 15
 		System.out.println("\n");
-		System.out.println("Ej13");
+		System.out.println("Ej15");
 		System.out.println("Escribe el numero de mes de la factura: ");
 		double totfac = 0;
 		String num15sc = sc.nextLine();
