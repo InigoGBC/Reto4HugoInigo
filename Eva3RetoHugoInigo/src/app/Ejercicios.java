@@ -33,6 +33,7 @@ public class Ejercicios {
 		}
 		System.out.println("Dime el id de un cliente: ");
 		int idcliente = (Integer.parseInt(sc.nextLine()));
+		System.out.println("Facturas: ");
 		for (Factura lf : facturaDAO.obtenerTodos()) {
 			if (lf.getIdCliente() == idcliente)
 				System.out.println(lf);
@@ -48,6 +49,7 @@ public class Ejercicios {
 		}
 		System.out.println("Dime el id de un empleado: ");
 		int idempleado = (Integer.parseInt(sc.nextLine()));
+		System.out.println("Facturas:");
 		for (Factura lf : facturaDAO.obtenerTodos()) {
 			if (lf.getIdEmpleado() == idempleado)
 				System.out.println(lf);
