@@ -9,7 +9,22 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
-		System.out.println("Dime un ejercicio: ");
+		System.out.println("""
+				=======================================
+				
+				               MENU		
+				     1. Ej 1          2. Ej 2
+				     3. Ej 3          4. Ej 4
+				     5. Ej 5          6. Ej 6
+				     7. Ej 7          8. Ej 8
+				     9. Ej 9         10. Ej 10
+				    11. Ej 11        12. Ej 12
+				    13. Ej 13        14. Ej 14
+				    15. Ej 15
+				    
+				======================================
+				""");
+		System.out.println("Escribe el numero del ejercicio: ");
 		String ejercicio = sc.nextLine();
 		int num = Integer.parseInt(ejercicio);
 		switch (num) {
