@@ -95,6 +95,7 @@ public class Ejercicios {
 		System.out.println("Ej 5 \nEscribe una fecha: ");
 		String datest = sc.nextLine();
 		LocalDate dateej4 = LocalDate.parse(datest);
+		System.out.println("Facturas: ");
 		for (Factura lf : facturaDAO.obtenerTodos()) {
 			LocalDate fech = lf.getFecha();
 			if (fech.equals(dateej4)) {
@@ -107,6 +108,7 @@ public class Ejercicios {
 		ClienteDAO clienteDAO = new ClienteDAO();
 		Cliente c = new Cliente("12345675Z", "Pepe Carrera", "Plaza Mozart 3");
 		System.out.println(clienteDAO.insertar(c));
+		System.out.println("Insertado");
 	}
 
 	public static void ejercicio7() {
@@ -129,7 +131,7 @@ public class Ejercicios {
 		if (!esta) {
 			System.out.println(productoDAO.insertar(new Producto(nuevonombre, nuevoprecio, nuevostock)));
 		} else {
-			System.out.println("El producto ya esta");
+			System.out.println("Producto insertado");
 		}
 		System.out.println("\n");
 	}

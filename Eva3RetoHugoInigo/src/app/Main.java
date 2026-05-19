@@ -11,7 +11,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 		System.out.println("""
 				=======================================
-				
+		
 				               MENU		
 				     1. Ej 1          2. Ej 2
 				     3. Ej 3          4. Ej 4
@@ -22,9 +22,8 @@ public class Main {
 				    13. Ej 13        14. Ej 14
 				    15. Ej 15
 				    
-				======================================
-				""");
-		System.out.println("Escribe el numero del ejercicio: ");
+				======================================""");
+		System.out.print("Escribe el numero del ejercicio: ");
 		String ejercicio = sc.nextLine();
 		int num = Integer.parseInt(ejercicio);
 		switch (num) {
