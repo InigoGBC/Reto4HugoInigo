@@ -23,7 +23,7 @@ import modelo.Producto;
 
 public class Ejercicios {
 
-	public void ejercicio1() {
+	public static void ejercicio1() {
 		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 		ClienteDAO clienteDAO = new ClienteDAO();
 		FacturaDAO facturaDAO = new FacturaDAO();
@@ -39,7 +39,7 @@ public class Ejercicios {
 		}
 	}
 
-	public void ejercicio2() {
+	public static void ejercicio2() {
 		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 		EmpleadoDAO empleadoDAO = new EmpleadoDAO();
 		FacturaDAO facturaDAO = new FacturaDAO();
@@ -54,7 +54,7 @@ public class Ejercicios {
 		}
 	}
 
-	public void ejercicio3() {
+	public static void ejercicio3() {
 		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 		FacturaDAO facturaDAO = new FacturaDAO();
 		LineaFacturaDAO lineafacturaDAO = new LineaFacturaDAO();
@@ -70,7 +70,7 @@ public class Ejercicios {
 		}
 	}
 
-	public void ejercicio4() {
+	public static void ejercicio4() {
 		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 		FacturaDAO facturaDAO = new FacturaDAO();
 		System.out.println("Ej 4 \nEscribe un mes de factura: ");
@@ -87,7 +87,7 @@ public class Ejercicios {
 		System.out.println("En total se ha facturado " + calc + "€ este mes");
 	}
 
-	public void ejercicio5() {
+	public static void ejercicio5() {
 		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 		FacturaDAO facturaDAO = new FacturaDAO();
 		System.out.println("Ej 5 \nEscribe una fecha: ");
@@ -101,13 +101,13 @@ public class Ejercicios {
 		}
 	}
 
-	public void ejercicio6() {
+	public static void ejercicio6() {
 		ClienteDAO clienteDAO = new ClienteDAO();
 		Cliente c = new Cliente("12345675Z", "Pepe Carrera", "Plaza Mozart 3");
 		System.out.println(clienteDAO.insertar(c));
 	}
 
-	public void ejercicio7() {
+	public static void ejercicio7() {
 		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 		ProductoDAO productoDAO = new ProductoDAO();
 		System.out.println("Ej 7 \nEscribe un nombre: ");
@@ -132,7 +132,7 @@ public class Ejercicios {
 		System.out.println("\n");
 	}
 
-	public void ejercicio8() {
+	public static void ejercicio8() {
 		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 		ProductoDAO productoDAO = new ProductoDAO();
 		System.out.println("Ej 8 \nEscribe la id del producto: ");
@@ -145,7 +145,7 @@ public class Ejercicios {
 		System.out.println("\n");
 	}
 
-	public void ejercicio9() {
+	public static void ejercicio9() {
 		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 		LineaFacturaDAO lineafacturaDAO = new LineaFacturaDAO();
 		ProductoDAO productoDAO = new ProductoDAO();
@@ -204,7 +204,7 @@ public class Ejercicios {
 		}
 	}
 
-	public void ejercicio10() {
+	public static void ejercicio10() {
 		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 		ProductoDAO productoDAO = new ProductoDAO();
 		LineaFacturaDAO lineafacturaDAO = new LineaFacturaDAO();
@@ -232,7 +232,7 @@ public class Ejercicios {
 		}
 	}
 
-	public void ejercicio11() {
+	public static void ejercicio11() {
 		System.out.println("Ej11");
 		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 		ProductoDAO productoDAO = new ProductoDAO();
@@ -257,7 +257,7 @@ public class Ejercicios {
 
 	}
 
-	public void ejercicio12() {
+	public static void ejercicio12() {
 		ClienteDAO clienteDAO = new ClienteDAO();
 		System.out.println("ejercicio 12: ");
 		guardarFichero(clienteDAO.obtenerTodos());
@@ -265,7 +265,7 @@ public class Ejercicios {
 
 	}
 
-	public void ejercicio13() {
+	public static void ejercicio13() {
 		System.out.println("Ej13");
 		System.out.println("Escribe el id de una factura: ");
 		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
@@ -286,11 +286,11 @@ public class Ejercicios {
 		}
 	}
 
-	public void ejercicio14() {
+	public static void ejercicio14() {
 
 	}
 
-	public void ejercicio15() {
+	public static void ejercicio15() {
 		System.out.println("Ej15");
 		Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 		EmpleadoDAO empleadoDAO = new EmpleadoDAO();
