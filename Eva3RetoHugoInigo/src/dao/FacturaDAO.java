@@ -135,8 +135,25 @@ public class FacturaDAO implements GenericDAO<Factura>{
 	        return null;
 
 	}
+	public boolean recalcular(double sub, double iva, double total, int id) {
+		String sql = "UPDATE factura SET subtotal = ?, iva = ?, total = ? where id = ?";
+	    try (Connection con = ConexionBD.getConnection();
+	         PreparedStatement ps = con.prepareStatement(sql)) {
+	        ps.setDouble(1, sub);
+	        ps.setDouble(2, iva);
+	        ps.setDouble(3, total);
+	        ps.setInt(4, id);
+	        return ps.executeUpdate() > 0;
 
+	    } catch (SQLException e) {
+	        System.out.println("Error al actualizar: " + e.getMessage());
+	    }
 
+	    return false;
+		
+	}
+	
+	
 	@Override
 	public boolean actualizar(Factura objeto) {
 		// TODO Auto-generated method stub

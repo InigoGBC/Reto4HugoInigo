@@ -41,24 +41,6 @@ public class LineaFacturaDAO implements GenericDAO<LineaFactura>{
         return false;
 	}
 	
-	public List<LineaFactura> obtenerTodosPorID() {
-		List<LineaFactura> lista = new ArrayList<>();
-        String sql = "SELECT * FROM lineafactura where id=?";
-        
-        try (Connection con = ConexionBD.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql);
-        		ResultSet rs = ps.executeQuery()) {
-        	
-            while (rs.next()) {
-                lista.add(mapear(rs));
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error al obtener todos: " + e.getMessage());
-        }
-
-        return lista;
-	}
 
 	@Override
 	public List<LineaFactura> obtenerTodos() {
@@ -82,8 +64,23 @@ public class LineaFacturaDAO implements GenericDAO<LineaFactura>{
 
 	@Override
 	public LineaFactura obtenerPorId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		 String sql = "SELECT id,id_factura,id_producto,cantidad,precio_unitario,importe FROM lineafactura WHERE id = ?";
+
+	        try (Connection con = ConexionBD.getConnection();
+	             PreparedStatement ps = con.prepareStatement(sql)) {
+
+	            ps.setInt(1, id);
+	            ResultSet rs = ps.executeQuery();
+
+	            if (rs.next()) {
+	                return mapear(rs);
+	            }
+
+	        } catch (SQLException e) {
+	            System.out.println("Error al obtener por id: " + e.getMessage());
+	        }
+
+	        return null;
 	}
 
 	@Override
@@ -94,8 +91,19 @@ public class LineaFacturaDAO implements GenericDAO<LineaFactura>{
 
 	@Override
 	public boolean eliminar(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "DELETE FROM lineafactura WHERE id = ?";
+
+        try (Connection con = ConexionBD.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar: " + e.getMessage());
+        }
+
+        return false;
 	}
 	public LineaFactura copiar(int id,int idfac) {
 		 String sql = "SELECT id_factura,id_producto,cantidad,precio_unitario,importe FROM lineafactura WHERE id = ?";

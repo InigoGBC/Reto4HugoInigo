@@ -245,6 +245,7 @@ public class Main2 {
 		}
 		*/
 		//Ej 15
+		/*
 		System.out.println("\n");
 		System.out.println("Ej15");
 		System.out.println("Escribe el numero de mes de la factura: ");
@@ -263,6 +264,40 @@ public class Main2 {
 			System.out.println("Este empleado ha facturado este mes en total: "+totfac+"\n");
 		}
 		
+		*/
+		//Ej 14
+		System.out.println("\n");
+		System.out.println("Ej14");
+		for (Factura fac : facturaDAO.obtenerTodos()) {
+			System.out.println(fac);
+			for (LineaFactura lf : lineafacturaDAO.obtenerTodos()) {
+				if (lf.getIdFactura()==fac.getId()) {
+					System.out.println(lf);
+				}
+			}
+			System.out.println();
+		}
+		double sub = 0;
+		double iva= 0;
+		double total = 0;
+		int idd = 0;
+		System.out.println("Escribe la id de la linea de factura que quieres eliminar: ");
+		String num14sc = sc.nextLine();
+		int num14 = Integer.parseInt(num14sc);
+		LineaFactura elim = lineafacturaDAO.obtenerPorId(num14);
+		System.out.println(lineafacturaDAO.eliminar(num14));
+		System.out.println("Linea factura eliminada");
+		for (LineaFactura lf : lineafacturaDAO.obtenerTodos()) {
+			if (lf.getIdFactura()==elim.getIdFactura()) {
+				sub+=lf.getImporte();
+			}
+		}
+		idd=elim.getIdFactura();
+		iva=sub*0.21;
+		total=sub+iva;
+		System.out.println(facturaDAO.recalcular(sub, iva, total, idd));
+		System.out.println("Factura recalculada");
+		System.out.println(facturaDAO.obtenerPorId(idd));
 		
 		
 
